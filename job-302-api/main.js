@@ -1,11 +1,10 @@
-// index.js
-const express = require("express");
-const app = express();
-const PORT = process.env.PORT || 3000;
+import { createApp } from "./app/app.js";
+import { config } from "dotenv";
+config();
 
-app.get("/", (req, res) => {
-  res.send("Hello, Job 302!");
-});
+const app = createApp();
+
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
