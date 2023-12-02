@@ -1,0 +1,20 @@
+{
+  "name": "job-302-api",
+  "version": "1.0.0",
+  "description": "Job searching application",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main"
+  },
+  "repository": {
+    "type": "git",
+    "url": "job-302"
+  },
+  "author": "Dusan Topic",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^3.0.2"
+  }
+}
