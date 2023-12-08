@@ -71,14 +71,15 @@ export const loginUser = async (req, res) => {
 
     const matchPasswords = await bcryptjs.compare(password, user.password);
 
-    if (!matchPasswords)
-      return res.status(401).json({ message: "Invalid username or password" });
-    generateToken(res, user._id);
-    return res.status(201).json({
-      id: user.id,
-      username: user.username,
-      email: user.email,
-    });
+    if (matchPasswords) {
+      generateToken(res, user._id);
+      return res.status(201).json({
+        id: user.id,
+        username: user.username,
+        email: user.email,
+      });
+    }
+    return res.status(401).json({ message: "Invalid username or password" });
   } catch (error) {
     return res.status(500).json({ message: "Internal Server Error", error });
   }
@@ -118,7 +119,9 @@ export const editUserProfile = async (req, res) => {
   const updatedUser = await user.save();
   if (updatedUser)
     return res.status(200).json({
-      updatedUser,
+      _id: user._id,
+      email: user.email,
+      username: user.username,
     });
 
   return res.status(404).json("User not found");
