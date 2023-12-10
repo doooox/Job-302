@@ -17,10 +17,6 @@ export const NAVIGATION_ROUTES = [
   {
     name: "home",
     path: "/",
-    perms: {
-      guestOnly: true,
-      requireAuth: false,
-    },
   },
   {
     name: "login",
@@ -48,7 +44,7 @@ export const NAVIGATION_ROUTES = [
   },
   {
     name: "update",
-    path: "/update",
+    path: "/profile",
     perms: {
       guestOnly: false,
       requireAuth: true,

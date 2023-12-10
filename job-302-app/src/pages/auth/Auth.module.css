@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 90vh;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(111, 211, 213, 0.8),
+      rgba(85, 143, 197, 0.8)
+    ),
+    url("../../assets/images/authBG.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.heading {
+  font-size: 2rem;
+  color: rgb(255, 255, 255);
+  margin-bottom: 4rem;
+}
+.icon {
+  font-size: 5rem;
+  position: absolute;
+  top: -15%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 2px solid black;
+  padding: 1rem;
+  border-radius: 1000px;
+  background-color: #fff;
+}
+.iconRegister {
+  font-size: 5rem;
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 2px solid black;
+  padding: 1rem;
+  border-radius: 1000px;
+  background-color: #fff;
+}
+.formContainer {
+  border: solid black 2px;
+  background-color: rgba(249, 249, 249, 0.7);
+  padding: 3rem 5rem;
+  border-radius: 1rem;
+  position: relative;
+  box-shadow: 0 10px 60px rgba(0, 0, 0, 0.3);
+  margin-bottom: 2.5rem;
+}
+.link {
+  text-decoration: none;
+  color: rgb(63, 112, 218);
+}

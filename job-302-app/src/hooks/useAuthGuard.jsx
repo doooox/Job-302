@@ -1,9 +1,11 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { NAVIGATION_ROUTES, ROUTES } from "../utils/static";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const useAuthGuard = () => {
-  const user = false;
+  const { userInfo } = useSelector((state) => state.auth);
+  // const user = false;
   const location = useLocation();
   const access = NAVIGATION_ROUTES.find(
     (route) => route.path === location.pathname
@@ -12,15 +14,15 @@ const useAuthGuard = () => {
 
   useEffect(() => {
     if (!access) return;
-    if (!user && access.perms.requireAuth) {
+    if (!userInfo && access.perms.requireAuth) {
       navigate(ROUTES.LOGIN);
       return;
     }
-    if (user && access.perms.guestOnly) {
+    if (userInfo && access.perms.guestOnly) {
       navigate(-1);
       return;
     }
-  });
+  }, []);
 };
 
 export default useAuthGuard;

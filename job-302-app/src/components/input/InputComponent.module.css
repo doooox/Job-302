@@ -1,0 +1,35 @@
+/* InputComponent.module.css */
+.inputContainer {
+  margin-bottom: 20px;
+  width: 20rem;
+}
+
+.label {
+  text-align: start;
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+  font-weight: bold;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.iconWrapper {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+}
+
+.icon {
+  font-size: 18px;
+}
+
+.input {
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 90%;
+}

@@ -1,0 +1,48 @@
+.container {
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 1rem;
+  position: relative;
+}
+.navList {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  list-style: none;
+}
+.navLink {
+  margin: 0.5rem 1rem;
+}
+
+.icon {
+  font-size: 1.5rem;
+  margin: 0 1rem;
+  cursor: pointer;
+}
+
+.menuHidden {
+  display: none;
+}
+
+.menuActive {
+  display: block;
+  position: absolute;
+  right: 1%;
+  top: 7vh;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.menuItem {
+  text-decoration: none;
+  list-style: none;
+  color: black;
+}
+
+.navLink:not(:last-child) {
+  border-bottom: 1px solid #ddd;
+}
