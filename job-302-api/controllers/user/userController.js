@@ -4,7 +4,7 @@ import { generateToken } from "../../utils/helpers.js";
 
 export const getAllUser = async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await User.find().sort({ createdAt: "descending" });
     return res.status(200).json(users);
   } catch (error) {
     return res.status(500).json({ message: "Internal Server Error", error });
@@ -13,7 +13,7 @@ export const getAllUser = async (req, res) => {
 
 export const registerUser = async (req, res) => {
   try {
-    const { username, email, password, confirmPassword } = req.body;
+    const { username, email, password, confirmPassword, role } = req.body;
 
     const emailTaken = await User.exists({ email });
     const usernameTaken = await User.exists({ username });
@@ -40,6 +40,7 @@ export const registerUser = async (req, res) => {
       username,
       email,
       password: hashPassword,
+      role,
     });
     if (user) {
       generateToken(res, user._id);
@@ -47,6 +48,7 @@ export const registerUser = async (req, res) => {
         _id: user._id,
         username: user.username,
         email: user.email,
+        role: user.role,
       });
     }
     return res.status(400).json({
@@ -77,6 +79,7 @@ export const loginUser = async (req, res) => {
         id: user.id,
         username: user.username,
         email: user.email,
+        role: user.role,
       });
     }
     return res.status(401).json({ message: "Invalid username or password" });

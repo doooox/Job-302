@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -6,16 +6,17 @@ import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 
 import { ROUTES } from "../../../utils/static";
 import { useLoginMutation } from "../../../store/slices/UserApiSlice";
-import { setCredentials } from "../../../store/slices/AuthSlice";
+import { getErrors, setCredentials } from "../../../store/slices/AuthSlice";
 
 import useAuthGuard from "../../../hooks/useAuthGuard";
 import ButtonComponent from "../../../components/button/ButtonComponent";
 import InputComponent from "../../../components/input/InputComponent";
 import styles from "../Auth.module.css";
+import ErrorMessageComponent from "../../../components/errorMessage/ErrorMessageComponent";
 
 const LoginPage = () => {
   useAuthGuard();
-
+  const [error, setError] = useState();
   const {
     register,
     handleSubmit,
@@ -34,12 +35,9 @@ const LoginPage = () => {
   const [login] = useLoginMutation();
 
   const onSubmit = async (data) => {
-    try {
-      const response = await login(data);
-      if (response.data) dispatch(setCredentials({ ...response }));
-    } catch (error) {
-      console.log(error?.data?.message || error?.error);
-    }
+    const response = await login(data);
+    if (response.data) dispatch(setCredentials({ ...response }));
+    if (response.error) setError(response.error.data.message);
   };
 
   return (
@@ -72,6 +70,7 @@ const LoginPage = () => {
           <Link to={ROUTES.REGISTER} className={styles.link}>
             Don't have an account? Go to Register
           </Link>
+          <ErrorMessageComponent errors={error} />
         </form>
       </div>
     </div>
